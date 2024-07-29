@@ -12,31 +12,31 @@ import Redirection from './pages/Redirection.jsx';
 
 const ProtectedRoute = ({ routeElement }) => {
 
-   const authStatus = localStorage.getItem("authStatus");
+  const authStatus = localStorage.getItem("authStatus");
 
-   if (authStatus === "authenticated") {
+  if (authStatus === "authenticated") {
     return routeElement;
-   }
-   
-   return <Navigate to="/login" />
+  }
+
+  return <Navigate to="/login" />
 };
- ProtectedRoute.propTypes = {
+ProtectedRoute.propTypes = {
   routeElement: PropTypes.element,
- };
+};
 
 function App() {
   return (
-  
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<ProtectedRoute routeElement={<Home />} />} />
-          <Route path="/students" element={<ProtectedRoute routeElement={<Students />} />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/:urlId " element={<Redirection />} />
-        </Routes>
-      </BrowserRouter>
-    
+
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<ProtectedRoute routeElement={<Home />} />} />
+        <Route path="/students" element={<ProtectedRoute routeElement={<Students />} />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/:urlId " element={<Redirection />} />
+      </Routes>
+    </BrowserRouter>
+
   )
 }
 

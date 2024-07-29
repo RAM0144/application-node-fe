@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {Link, useNavigate, Navigate } from 'react-router-dom';
+import { Link, useNavigate, Navigate } from 'react-router-dom';
 import { forgotPassword, loginUser } from '../APIs.js';
 
 
@@ -18,25 +18,25 @@ const Login = () => {
     });
   };
 
-     const handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
 
-        e.preventDefault();
+    e.preventDefault();
 
-        try {
-            const { userToken } = await loginUser(formData);
-            localStorage.setItem("authStatus", "authenticated");
-            localStorage.setItem("authToken", userToken);
-            navigate("/");
-        } catch (error) {
-            console.log("Error", error);
-            alert(error.message)
-        }
-    };
-
-    if (authStatus === "authenticated") {
-        console.log("Already Authenticated");
-        return <Navigate to={"/"} />;
+    try {
+      const { userToken } = await loginUser(formData);
+      localStorage.setItem("authStatus", "authenticated");
+      localStorage.setItem("authToken", userToken);
+      navigate("/");
+    } catch (error) {
+      console.log("Error", error);
+      alert(error.message)
     }
+  };
+
+  if (authStatus === "authenticated") {
+    console.log("Already Authenticated");
+    return <Navigate to={"/"} />;
+  }
 
 
   const handleForgotPassword = async () => {
@@ -81,9 +81,9 @@ const Login = () => {
             <button type="submit" className="btn btn-primary">Login</button>
           </form>
           <div className="mt-3">
-            <a href="#forgot-password" className="text-decoration-none" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal" style={{float: "left"}}>Forgot Password?</a>
+            <a href="#forgot-password" className="text-decoration-none" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal" style={{ float: "left" }}>Forgot Password?</a>
           </div>
-          <Link to="/register" style={{float:"right"}} className="">Go to Register</Link>
+          <Link to="/register" style={{ float: "right" }} className="">Go to Register</Link>
         </div>
       </div>
 

@@ -98,7 +98,7 @@ const Students = () => {
                         onChange={handleChange}
                     />
                 </div>
-               
+
                 <button type="submit" className="btn btn-primary">
                     Add Student
                 </button>

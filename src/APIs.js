@@ -56,66 +56,66 @@ async function deleteStudent(studentId) {
 const registerUser = async (userDetails) => {
 
     try {
-      const response = await fetch(`${baseUrl}/auth/register`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(userDetails),
-      });
-      if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
-      }
-      return await response.json();
-  
+        const response = await fetch(`${baseUrl}/auth/register`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(userDetails),
+        });
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return await response.json();
+
     } catch (error) {
-      console.error(`Error while Registering the User`, error);
-  
+        console.error(`Error while Registering the User`, error);
+
     }
     return undefined;
-  
-  };
 
-  // Login
-  const loginUser = async (userCreds) => {
-    
-      const response = await fetch(`${baseUrl}/auth/login`, {
-         method: "POST",
-         headers: {
+};
+
+// Login
+const loginUser = async (userCreds) => {
+
+    const response = await fetch(`${baseUrl}/auth/login`, {
+        method: "POST",
+        headers: {
             "Content-Type": "application/json",
-         },
-         body: JSON.stringify(userCreds),
-      });  
-       if (response.status === 401 || response.status === 400) {
+        },
+        body: JSON.stringify(userCreds),
+    });
+    if (response.status === 401 || response.status === 400) {
         const { msg } = await response.json();
         throw new Error(msg);
-      }
-      return await response.json();
-  
-  };
+    }
+    return await response.json();
 
-  const forgotPassword = async (email) => {
-    try { 
-      const response = await fetch(`${baseUrl}/auth/forgot-password`, {
-        method: "POST",
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email }),
-      });
-  
-      if (!response.ok) {
-        throw new Error('Failed to send forgot password email');
-      }
-  
-      const data = await response.json();
-      return data;
+};
+
+const forgotPassword = async (email) => {
+    try {
+        const response = await fetch(`${baseUrl}/auth/forgot-password`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ email }),
+        });
+
+        if (!response.ok) {
+            throw new Error('Failed to send forgot password email');
+        }
+
+        const data = await response.json();
+        return data;
     } catch (error) {
-      console.error('Error:', error);
-      
+        console.error('Error:', error);
+
     }
     return undefined;
-  };
+};
 
 
 export { getALLStudents, createStudent, deleteStudent, registerUser, loginUser, forgotPassword };
