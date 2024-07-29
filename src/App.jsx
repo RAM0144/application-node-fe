@@ -5,6 +5,7 @@ import Students from './pages/Student.jsx';
 import Home from './pages/Home.jsx';
 import Login from './pages/Login.jsx';
 import Register from './pages/Register.jsx';
+import Redirection from './pages/Redirection.jsx';
 
 // routecomponent which load the routes only when the authStatus 
 //is authenticated else it will navigated to login page
@@ -32,6 +33,7 @@ function App() {
           <Route path="/students" element={<ProtectedRoute routeElement={<Students />} />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/:urlId " element={<Redirection />} />
         </Routes>
       </BrowserRouter>
     

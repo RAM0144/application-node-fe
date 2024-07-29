@@ -94,5 +94,28 @@ const registerUser = async (userDetails) => {
   
   };
 
+  const forgotPassword = async (email) => {
+    try { 
+      const response = await fetch(`${baseUrl}/auth/forgot-password`, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to send forgot password email');
+      }
+  
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error('Error:', error);
+      
+    }
+    return undefined;
+  };
 
-export { getALLStudents, createStudent, deleteStudent, registerUser, loginUser };
+
+export { getALLStudents, createStudent, deleteStudent, registerUser, loginUser, forgotPassword };
